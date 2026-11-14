@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HoloAI — ИИ-ассистент Аянами Рей для Windows</title>
+  <meta name="description" content="HoloAI — голографический ИИ-ассистент для рабочего стола Windows: чат с ИИ, Аянами Рей на экране, голос, инструменты. Проект одного разработчика на JavaScript.">
+  <meta property="og:title" content="HoloAI — ИИ-ассистент для Windows">
+  <meta property="og:description" content="Голографические окна, чат с ИИ, Аянами Рей на рабочем столе, голос и инструменты.">
+  <meta property="og:image" content="assets/og.png">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0e11">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Падающий код на весь фон (рисует script.js) -->
+  <canvas id="rain" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="HoloAI">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><path d="M9.48 45V19L32 6L54.52 19V45L33.72 57H23A3 3 0 0 1 20 54V24A3 3 0 0 1 23 21H41A3 3 0 0 1 44 24V51.07M26 27V48M32 27V48M38 27V48"/></svg>
+      <span>HoloAI</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#features" data-i18n="nav.features">Возможности</a>
+      <a href="#plans" data-i18n="nav.plans">Тарифы</a>
+      <a href="#start" data-i18n="nav.start">Как начать</a>
+      <a href="#faq" data-i18n="nav.faq">Вопросы</a>
+    </nav>
+    <div class="nav__right">
+      <button class="lang" type="button" id="lang" aria-label="Language">EN</button>
+      <a class="btn btn--small" href="https://boosty.to/capr1corn" target="_blank" rel="noopener" data-i18n="nav.get">Получить ключ</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Первый экран -->
+    <section class="hero">
+      <p class="term">&gt; holoai --start<i class="cursor"></i></p>
+      <h1 class="glitch" data-text="HoloAI">HoloAI</h1>
+      <div class="rule"></div>
+      <p class="hero__sub" data-i18n="hero.sub">ИИ-ассистент Аянами Рей для рабочего стола Windows</p>
+      <p class="hero__tags">DEATHBEARD <b>✦</b> ASSISTANT <b>✦</b> JAVASCRIPT</p>
+      <div class="hero__cta">
+        <a class="btn" href="https://boosty.to/capr1corn" target="_blank" rel="noopener" data-i18n="hero.get">Получить ключ на Boosty</a>
+        <a class="btn btn--ghost" href="https://t.me/DeathBeard" target="_blank" rel="noopener" data-i18n="hero.write">Написать автору</a>
+      </div>
+      <p class="hero__note" data-i18n="hero.note">Версия 0.4v · BETA · Windows 10 и 11</p>
+    </section>
+
+    <!-- Возможности -->
+    <section class="block" id="features">
+      <h2 data-i18n="f.title">Возможности</h2>
+      <div class="grid">
+        <article class="card">
+          <h3 data-i18n="f.win.t">Голографические окна</h3>
+          <p data-i18n="f.win.d">Стеклянные окна с анимацией «точка → линия → окно», размытым фоном и падающим кодом. Две темы: «Классика» и «Красный неон».</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="f.chat.t">Чат с ИИ</h3>
+          <p data-i18n="f.chat.d">Claude и Gemini по вашим API-ключам: потоковые ответы, вложения с фото, PDF и текстом. Ключи хранятся в зашифрованном виде.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="f.rei.t">Рэй на рабочем столе</h3>
+          <p data-i18n="f.rei.d">Мини-ассистент сидит над панелью задач, отвечает в спич-баббле, реагирует на слова и настроение. Её можно взять мышью и перенести.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="f.voice.t">Голос и зрение <span class="tag">Demo</span></h3>
+          <p data-i18n="f.voice.d">Говорите с Рэй голосом, слушайте её ответы, управляйте окнами и музыкой командами. По вашему разрешению Рэй видит активное окно и может помочь.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="f.tools.t">Инструменты</h3>
+          <p data-i18n="f.tools.d">Заметки, задачи с напоминаниями, таймер и Pomodoro, погода, калькулятор и конвертер, быстрый запуск программ, мини-монитор системы.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="f.music.t">Плеер</h3>
+          <p data-i18n="f.music.d">Мини-плеер со спектром показывает, что играет на компьютере, ведёт историю и список любимых треков.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Тарифы -->
+    <section class="block" id="plans">
+      <h2 data-i18n="p.title">Тарифы</h2>
+      <p class="lead" data-i18n="p.lead">HoloAI работает по ключу лицензии. Ключ выдаёт автор после оформления подписки на Boosty.</p>
+      <div class="plans">
+        <article class="plan">
+          <img src="assets/beta.png" alt="" width="96" height="96" loading="lazy">
+          <h3>Beta</h3>
+          <p class="plan__sub" data-i18n="p.beta.sub">Для обычного использования</p>
+          <ul>
+            <li data-i18n="p.beta.1">Голографические окна и темы</li>
+            <li data-i18n="p.beta.2">Чат с ИИ по вашим API-ключам</li>
+            <li data-i18n="p.beta.3">Рэй на рабочем столе</li>
+            <li data-i18n="p.beta.4">Заметки, задачи, плеер, инструменты</li>
+            <li class="off" data-i18n="p.beta.5">Без голоса и зрения Рэй, её инициативы, консольных клиентов ИИ и режима 21+</li>
+          </ul>
+          <a class="btn btn--ghost" href="https://boosty.to/capr1corn" target="_blank" rel="noopener" data-i18n="p.choose">Оформить на Boosty</a>
+        </article>
+        <article class="plan plan--top">
+          <img src="assets/demo.png" alt="" width="96" height="96" loading="lazy">
+          <h3>Demo</h3>
+          <p class="plan__sub" data-i18n="p.demo.sub">Все функции и новинки первыми</p>
+          <ul>
+            <li data-i18n="p.demo.1">Всё, что есть в Beta</li>
+            <li data-i18n="p.demo.2">Голос: распознавание речи, голос Рэй, голосовые команды</li>
+            <li data-i18n="p.demo.3">Зрение Рэй и её инициатива</li>
+            <li data-i18n="p.demo.4">Консольные клиенты ИИ: Claude Code, Gemini CLI, Codex CLI</li>
+            <li data-i18n="p.demo.5">Режим 21+ (выключен по умолчанию)</li>
+          </ul>
+          <a class="btn" href="https://boosty.to/capr1corn" target="_blank" rel="noopener" data-i18n="p.choose">Оформить на Boosty</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Как начать -->
+    <section class="block" id="start">
+      <h2 data-i18n="s.title">Как начать</h2>
+      <ol class="steps">
+        <li>
+          <h3 data-i18n="s.1.t">Оформите подписку</h3>
+          <p data-i18n="s.1.d">Выберите уровень Beta или Demo на Boosty. Автор пришлёт личный ключ лицензии HAI1-… в сообщения.</p>
+        </li>
+        <li>
+          <h3 data-i18n="s.2.t">Скачайте установщик</h3>
+          <p data-i18n="s.2.d">Архив с HoloAI-Setup.exe и инструкцией лежит в посте для подписчиков. Права администратора не нужны.</p>
+        </li>
+        <li>
+          <h3 data-i18n="s.3.t">Вставьте ключ</h3>
+          <p data-i18n="s.3.d">Установщик попросит ключ на странице «Ключ лицензии». Вставьте его целиком, пробелы и переносы строк не мешают.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Вопросы -->
+    <section class="block" id="faq">
+      <h2 data-i18n="q.title">Вопросы</h2>
+      <details>
+        <summary data-i18n="q.1.q">На чём работает HoloAI?</summary>
+        <p data-i18n="q.1.a">Windows 10 или 11 (64-бит), около 400 МБ на диске.</p>
+      </details>
+      <details>
+        <summary data-i18n="q.2.q">ИИ входит в подписку?</summary>
+        <p data-i18n="q.2.a">Нет. Чат работает через ваши собственные API-ключи Claude или Gemini, их можно добавить в окне «API-ключи». Подписка открывает саму программу.</p>
+      </details>
+      <details>
+        <summary data-i18n="q.3.q">Нужен ли интернет?</summary>
+        <p data-i18n="q.3.a">Ключ лицензии проверяется на вашем компьютере, без интернета. Интернет нужен для ответов ИИ, погоды и курсов валют.</p>
+      </details>
+      <details>
+        <summary data-i18n="q.4.q">Windows пишет «Система защитила ваш компьютер»</summary>
+        <p data-i18n="q.4.a">Программа пока не подписана платным сертификатом. Нажмите «Подробнее» → «Выполнить в любом случае».</p>
+      </details>
+      <details>
+        <summary data-i18n="q.5.q">Где хранятся мои данные?</summary>
+        <p data-i18n="q.5.a">Настройки, заметки, история и API-ключи хранятся только на вашем компьютере. Ключи зашифрованы средствами Windows.</p>
+      </details>
+      <details>
+        <summary data-i18n="q.6.q">Кто делает проект?</summary>
+        <p data-i18n="q.6.a">Один разработчик, DeathBeard. Проект написан на JavaScript (Electron и Node.js). Идеи и сообщения об ошибках можно присылать в Telegram.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><span data-i18n="foot.by">Автор:</span> DeathBeard</p>
+    <p class="foot__links">
+      <a href="https://boosty.to/capr1corn" target="_blank" rel="noopener">Boosty</a>
+      <a href="https://t.me/DeathBeard" target="_blank" rel="noopener">Telegram</a>
+    </p>
+    <p class="foot__note" data-i18n="foot.note">HoloAI — бета-версия. Имена и персонажи принадлежат их правообладателям.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

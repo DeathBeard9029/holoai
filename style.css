@@ -1,0 +1,200 @@
+/* Сайт HoloAI. Цвета — только из переменных ниже (гамма аватарки: графит и ледяные линии). */
+:root {
+  --bg-1: #1d262d;
+  --bg-2: #0b0e11;
+  --line: #cfe9ee;          /* ледяные линии логотипа */
+  --text: #eaf7fa;
+  --muted: #9fb7bf;
+  --accent: #8fd3e3;
+  --accent-dim: #2f4a55;
+  --glitch: #7fc6d6;
+  --card: rgba(207, 233, 238, 0.05);
+  --card-line: rgba(207, 233, 238, 0.22);
+  --shade: rgba(9, 12, 15, 0.82);
+  --off: #7d9199;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --wrap: 1080px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 0%, var(--bg-1) 0%, var(--bg-2) 70%) fixed var(--bg-2);
+  color: var(--text);
+  font: 16px/1.6 var(--sans);
+  overflow-x: hidden;
+}
+
+#rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+a { color: var(--accent); }
+main, .nav, .foot { position: relative; z-index: 1; }
+
+/* ─── Шапка ─── */
+.nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px max(16px, calc((100vw - var(--wrap)) / 2));
+  background: var(--shade);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-line);
+  z-index: 5;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font: 700 20px/1 var(--mono); letter-spacing: 1px; }
+.logo { width: 30px; height: 30px; fill: none; stroke: var(--line); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.nav__links { display: flex; gap: 22px; margin-left: auto; }
+.nav__links a { color: var(--muted); text-decoration: none; font: 14px/1 var(--mono); }
+.nav__links a:hover { color: var(--text); }
+.nav__right { display: flex; align-items: center; gap: 12px; }
+.lang {
+  padding: 7px 10px;
+  border: 1px solid var(--card-line);
+  background: transparent;
+  color: var(--muted);
+  font: 700 13px/1 var(--mono);
+  cursor: pointer;
+}
+.lang:hover { color: var(--text); border-color: var(--accent); }
+
+/* ─── Кнопки: линии сверху и снизу, как рамка голограммы ─── */
+.btn {
+  display: inline-block;
+  padding: 13px 22px;
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  background: rgba(143, 211, 227, 0.12);
+  color: var(--text);
+  font: 700 15px/1.2 var(--mono);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn:hover { background: rgba(143, 211, 227, 0.24); box-shadow: 0 0 18px rgba(143, 211, 227, 0.35); }
+.btn--ghost { border-color: var(--card-line); background: transparent; }
+.btn--small { padding: 8px 14px; font-size: 13px; }
+
+/* ─── Первый экран ─── */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 90px 16px 80px;
+}
+.term { color: var(--muted); font: 18px/1 var(--mono); margin-bottom: 26px; }
+.cursor { display: inline-block; width: 10px; height: 20px; margin-left: 8px; background: var(--accent); vertical-align: -4px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.glitch {
+  position: relative;
+  font: 700 clamp(64px, 15vw, 168px)/1 var(--mono);
+  letter-spacing: 4px;
+  color: var(--text);
+  text-shadow: 0 0 26px rgba(143, 211, 227, 0.45);
+}
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; z-index: -1; text-shadow: none; }
+.glitch::before { color: var(--accent-dim); transform: translate(-0.045em, 0.045em); }
+.glitch::after { color: transparent; -webkit-text-stroke: 2px var(--glitch); transform: translate(0.03em, -0.025em); animation: jitter 3.2s steps(1) infinite; }
+@keyframes jitter {
+  0%, 36%, 42%, 88%, 92%, 100% { transform: translate(0.03em, -0.025em); clip-path: none; }
+  38% { transform: translate(0.11em, -0.025em); clip-path: inset(30% 0 48% 0); }
+  40% { transform: translate(-0.08em, -0.025em); clip-path: inset(62% 0 18% 0); }
+  90% { transform: translate(0.09em, -0.025em); clip-path: inset(12% 0 70% 0); }
+}
+
+.rule { width: min(560px, 80vw); height: 2px; margin: 26px 0 22px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+.hero__sub { font-size: clamp(18px, 2.6vw, 24px); color: var(--text); max-width: 720px; }
+.hero__tags { margin-top: 14px; color: var(--muted); font: 14px/1.4 var(--mono); letter-spacing: 4px; }
+.hero__tags b { color: var(--accent); font-weight: 400; margin: 0 6px; }
+.hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 34px; }
+.hero__note { margin-top: 22px; color: var(--muted); font: 13px/1 var(--mono); }
+
+/* ─── Блоки ─── */
+.block { max-width: var(--wrap); margin: 0 auto; padding: 56px 16px; }
+.block h2 { font: 700 clamp(26px, 4vw, 36px)/1.2 var(--mono); letter-spacing: 1px; margin-bottom: 24px; }
+.block h2::before { content: "> "; color: var(--accent); }
+.lead { color: var(--muted); max-width: 760px; margin: -8px 0 26px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card, .plan, details {
+  background: var(--card);
+  border-top: 2px solid var(--card-line);
+  border-bottom: 2px solid var(--card-line);
+  backdrop-filter: blur(4px);
+}
+.card { padding: 20px; transition: border-color 0.2s; }
+.card:hover { border-color: var(--accent); }
+.card h3 { font: 700 18px/1.3 var(--mono); margin-bottom: 8px; }
+.card p { color: var(--muted); font-size: 15px; }
+.tag { margin-left: 6px; padding: 2px 6px; border: 1px solid var(--accent); color: var(--accent); font: 700 11px/1 var(--mono); vertical-align: 2px; }
+
+/* ─── Тарифы ─── */
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+.plan { display: flex; flex-direction: column; padding: 26px 22px; }
+.plan--top { border-color: var(--accent); box-shadow: 0 0 28px rgba(143, 211, 227, 0.14); }
+.plan img { width: 96px; height: 96px; margin-bottom: 14px; }
+.plan h3 { font: 700 30px/1 var(--mono); letter-spacing: 2px; }
+.plan__sub { color: var(--accent); font: 14px/1.4 var(--mono); margin: 8px 0 16px; }
+.plan ul { list-style: none; padding: 0; margin-bottom: 22px; flex: 1; }
+.plan li { position: relative; padding: 6px 0 6px 24px; color: var(--text); font-size: 15px; }
+.plan li::before { content: "✦"; position: absolute; left: 0; color: var(--accent); }
+.plan li.off { color: var(--off); }
+.plan li.off::before { content: "—"; color: var(--off); }
+
+/* ─── Шаги ─── */
+.steps { list-style: none; padding: 0; counter-reset: step; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.steps li { counter-increment: step; padding: 20px; background: var(--card); border-left: 2px solid var(--accent); }
+.steps li::before { content: "0" counter(step); display: block; color: var(--accent); font: 700 28px/1 var(--mono); margin-bottom: 10px; }
+.steps h3 { font: 700 18px/1.3 var(--mono); margin-bottom: 6px; }
+.steps p { color: var(--muted); font-size: 15px; }
+
+/* ─── Вопросы ─── */
+details { margin-bottom: 10px; padding: 0 18px; }
+summary { padding: 15px 0; cursor: pointer; font: 700 16px/1.4 var(--mono); list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+ "; color: var(--accent); }
+details[open] summary::before { content: "− "; }
+details p { padding: 0 0 16px; color: var(--muted); }
+
+/* ─── Подвал ─── */
+.foot {
+  margin-top: 30px;
+  padding: 28px 16px 36px;
+  border-top: 1px solid var(--card-line);
+  background: var(--shade);
+  text-align: center;
+  color: var(--muted);
+  font: 14px/1.6 var(--mono);
+}
+.foot__links { display: flex; justify-content: center; gap: 20px; margin: 8px 0; }
+.foot__note { font-size: 12px; color: var(--off); }
+
+/* ─── Телефон ─── */
+@media (max-width: 760px) {
+  .nav { gap: 12px; }
+  .nav__links { display: none; }
+  .nav__right { margin-left: auto; }
+  .hero { padding: 60px 16px 56px; }
+  .hero__tags { letter-spacing: 2px; font-size: 12px; }
+  .hero__cta .btn { width: 100%; }
+  .block { padding: 40px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor, .glitch::after { animation: none; }
+}
